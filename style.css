@@ -1,0 +1,827 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* Root color variables */
+:root {
+  --primaryTextColor: #232e35; /* Untuk title atau judul */
+  --secondaryTextColor: #656d72; /* Untuk text biasa seperti paragraph contohnya */
+
+  --borderColor: #f1f1f1;
+  --lineColor: #d9d9d9; /* untuk line di pre-title */
+
+  --primaryBackgroundColor: #fff;
+  --secondaryBackgroundColor: #fbfbfb;
+  --thirdBackgroundColor: #f5f3fe;
+
+  --primaryIconColor: #ed8ebe; /* Pink pastel */
+  --primaryIconColorHover: #d07ab7; /* Darker pink pastel */
+
+  --sectionPadding: 6rem 0;
+
+  --itemBorderRadius: 0.7rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--primaryBackgroundColor);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  color: var(--primaryTextColor);
+}
+
+p {
+  font-size: 1rem; /* 16 px */
+  line-height: 1.9rem; /* 30.4 px */
+}
+
+p,
+span,
+label,
+input,
+textarea,
+li {
+  color: var(--secondaryTextColor);
+}
+
+a {
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+/* End Preparation */
+
+.main-container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+  .main-container {
+      width: 90%;
+  }
+}
+
+/* Buttons */
+.btn {
+  padding: 1rem 1.5rem;
+  background: var(--primaryIconColor);
+  border: 1.5px solid var(--borderColor);
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  border-radius: var(--itemBorderRadius);
+}
+
+.btn:hover {
+  background-color: var(--primaryIconColorHover);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 5px;
+}
+
+/* Titles */
+.section-title {
+  margin: 1rem 0 4rem;
+  font-size: 2rem;
+}
+
+.pre-title {
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  color: var(--secondaryTextColor);
+  position: relative;
+  padding-left: 40px;
+  width: fit-content;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.pre-title::before {
+  content: "";
+  width: 30px;
+  height: 1px;
+  background: var(--lineColor);
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 50%;
+}
+
+/* Layouts */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+}
+
+/* --- Logo and Navigation Menu --- */
+/* Navigation */
+/* Navbar container */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Navbar akan mengikuti lebar layar */
+  display: flex;
+  justify-content: space-between; /* Spasi antara logo dan menu */
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: var(--thirdBackgroundColor); /* Warna background navbar */
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar sticky */
+.nav.sticky {
+  background-color: var(--primaryBackgroundColor); /* Ubah warna saat sticky */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bayangan lebih tegas */
+}
+
+/* Navbar list */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: flex;
+  align-items: center;
+}
+
+nav ul li a {
+  color: var(--primaryTextColor);
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+  color: var(--primaryIconColor); /* Warna ketika hover */
+}
+
+/* Responsif untuk tampilan mobile */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column; /* Navbar akan ditata secara vertikal di layar kecil */
+    padding: 1rem 1.5rem; /* Padding lebih kecil */
+  }
+
+  nav ul {
+    flex-direction: column; /* Daftar menu menjadi vertikal */
+    gap: 1.5rem; /* Spasi antar item menu */
+    width: 100%;
+    display: none; /* Sembunyikan menu pada awalnya */
+    align-items: center;
+  }
+
+  nav ul.nav-active {
+    display: flex; /* Tampilkan menu ketika navbar aktif */
+  }
+
+  nav ul li a {
+    font-size: 1.2rem; /* Ukuran font sedikit lebih besar di mobile */
+  }
+
+  /* Burger menu */
+  .burger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+  }
+
+  .burger div {
+    width: 30px;
+    height: 3px;
+    background-color: var(--primaryTextColor);
+  }
+}
+
+/* Burger menu aktif */
+.nav .burger.active div {
+  background-color: var(--primaryIconColor);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.logo a {
+  color: var(--primaryTextColor);
+}
+
+/* Burger Icon (for mobile) */
+.burger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.burger div {
+  width: 25px;
+  height: 3px;
+  background-color: var(--primaryTextColor);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+      display: none;
+      position: absolute;
+      top: 80px;
+      right: 2rem;
+      background-color: var(--thirdBackgroundColor);
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  nav ul li a {
+      font-size: 1.2rem;
+  }
+
+  .burger {
+      display: flex;
+  }
+
+  .burger.active div:nth-child(1) {
+      transform: rotate(45deg);
+      position: absolute;
+  }
+
+  .burger.active div:nth-child(2) {
+      opacity: 0;
+  }
+
+  .burger.active div:nth-child(3) {
+      transform: rotate(-45deg);
+      position: absolute;
+  }
+
+  nav ul.active {
+      display: flex;
+  }
+}
+
+
+/* Hero Section */
+#hero {
+    display: flex;
+    align-items: center; /* Menjaga teks dan gambar sejajar vertikal */
+    justify-content: space-between; /* Memberikan jarak antara teks dan gambar */
+    height: 100vh; /* Menggunakan tinggi penuh layar */
+    padding: 0 2rem; /* Memberikan ruang di kiri dan kanan */
+    box-sizing: border-box; /* Memastikan padding tidak mempengaruhi lebar */
+  }
+  
+  .hero-left {
+    flex: 1; /* Membuat elemen kiri fleksibel, mengambil ruang yang tersedia */
+    max-width: 600px; /* Membatasi lebar maksimal elemen kiri */
+  }
+  
+  .hero-name {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 0.5rem 0 1rem;
+  }
+  
+  /* Styling untuk hero-left */
+.hero-left {
+  display: flex;
+  flex-direction: column; /* Menyusun elemen secara vertikal */
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%; /* Menjamin kontainer penuh secara vertikal */
+}
+
+/* Styling untuk paragraf dalam hero-left */
+.hero-left p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  text-align: justify; /* Meratakan teks kiri-kanan */
+  margin: 0 0 20px 0; /* Memberikan margin bawah agar ada jarak sebelum tombol */
+}
+
+/* Styling untuk hero-right */
+.hero-right {
+  flex: 1; /* Membuat elemen kanan fleksibel */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Menjaga gambar sejajar vertikal */
+}
+
+.hero-right img {
+  width: 60%; /* Menyesuaikan ukuran gambar agar lebih kecil dan responsif */
+  max-width: 500px; /* Membatasi lebar gambar */
+  height: auto; /* Menjaga proporsi gambar */
+  border-radius: 10px; /* Menambahkan sudut membulat untuk tampilan lebih modern */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan pada gambar */
+}
+
+/* Definisi warna utama untuk ikon (pink pastel) */
+:root {
+  --primaryIconColor: #ed8ebe; /* pink pastel */
+}
+
+/* Styling untuk span dalam hero-name */
+.hero-name span {
+  color: var(--primaryIconColor) !important;
+}
+
+/* Styling untuk tombol resume */
+.btn-resume {
+  display: inline-block;
+  margin-top: 20px; /* Memberi jarak di atas tombol */
+  padding: 12px 24px;
+  background-color: #f8bbd0; /* Warna pink muda */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out; /* Menambahkan transisi pada box-shadow */
+  align-self: flex-start; /* Menjaga tombol di kiri dalam kolom */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan ringan pada tombol */
+}
+
+/* Efek saat tombol resume dihover */
+.btn-resume:hover {
+  background-color: #f06292; /* Warna pink lebih gelap saat hover */
+  transform: translateY(-4px); /* Efek angkat saat hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Menambahkan bayangan lebih besar saat hover */
+}
+
+/* Efek saat tombol resume diklik */
+.btn-resume:active {
+  transform: translateY(2px); /* Efek saat tombol ditekan */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Mengurangi bayangan saat ditekan */
+}
+
+/* Services Section */
+#services {
+    background-color: var(--secondaryBackgroundColor);
+    padding: var(--sectionPadding);
+  }
+  
+  .services .pre-title {
+    margin: 0 auto;
+  }
+  
+  .services-title {
+    text-align: center;
+  }
+  
+  .service {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #f8bbd0; /* Pink pastel background */
+    border-radius: var(--itemBorderRadius);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transisi saat hover */
+  }
+  
+  /* Hover effect */
+  .service:hover {
+    transform: translateY(-8px); /* Efek mengangkat sedikit */
+    box-shadow: 0 10px 20px rgba(255, 64, 129, 0.2); /* Bayangan pink */
+  }
+  
+  /* Service title styling */
+  .service h4 {
+    margin: 1.5rem 0;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: #313131; 
+  }
+  
+  /* Service icon */
+  .service-icon {
+    background: var(--thirdBackgroundColor);
+    width: fit-content;
+    margin: 0 auto;
+    padding: 1rem 1.3rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transisi untuk klik dan hover */
+  }
+  
+  /* Service icon color */
+  .service-icon svg {
+    fill: #ff4081; /* Warna ikon pink */
+    transition: fill 0.3s ease; /* Transisi saat ikon dihover */
+  }
+  
+  /* Hover effect pada ikon */
+  .service-icon:hover svg {
+    fill: #d81b60; /* Warna ikon berubah saat hover */
+  }
+  
+  /* Efek klik pada service */
+  .service:active {
+    transform: scale(0.98); /* Efek klik dengan memperkecil sedikit */
+    transition: transform 0.1s ease-out;
+  }
+  
+  /* Style untuk tag dalam service (jika ada) */
+  .service-tags div {
+    font-size: 0.9rem;
+    border: 1px solid #ff4081; /* Border pink */
+    padding: 0.4rem 1rem;
+    color: #ff4081;
+    border-radius: 20px; /* Membulatkan sudut */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .service-tags div:hover {
+    background-color: #ff4081; /* Latar belakang berubah saat hover */
+    color: #ffffff; /* Warna teks putih saat hover */
+  }
+
+/* Portfolios */
+#portfolios {
+  padding: var(--sectionPadding);
+}
+
+#portfolios h1 {
+    text-align: center;
+    font-size: 2rem; /* Sesuaikan ukuran font jika perlu */
+    margin-bottom: 2rem; /* Sesuaikan jarak bawah jika perlu */
+  }
+
+.portfolio {
+  border-radius: var(--itemBorderRadius);
+  overflow: hidden; /* supaya gambar yang diatas itu dia ngikut border radiusnya, karena yang dikasih border radius disini adalah div portfolio ini */
+  border: 1px solid var(--borderColor);
+}
+
+.portfolio-cover {
+  height: 250px;
+}
+
+.portfolio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-info {
+  padding: 2rem 1.5rem;
+}
+
+.portfolio-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.portfolio h4 {
+  font-weight: 500;
+  font-size: 1.05rem;
+}
+
+.portfolio-title a svg:hover {
+  fill: var(--primaryIconColor);
+}
+
+.portfolio-title a svg {
+  transition: 0.2s ease-in-out;
+}
+
+.portfolio-tags {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.portfolio-tags div {
+  font-size: 0.9rem;
+  border: 1px solid var(--borderColor);
+  padding: 0.4rem 1rem;
+  color: var(--secondaryTextColor);
+}
+
+.portfolio-tags div {
+  font-size: 0.9rem;
+  border: 1px solid var(--borderColor);
+  padding: 0.4rem 1rem;
+  color: var(--secondaryTextColor);
+}
+
+/* Certificate Section */
+#certificate {
+    display: flex;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: #fff0f6;
+}
+
+#certificate h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+/* Certificate Container */
+.certificate-container {
+    max-width: 900px;
+    text-align: center;
+    background-color: #ffb3d9;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Certificate Images */
+.certificate-images {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.certificate-image img {
+    width: 300px; /* Set the image width */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificate-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Certificate Info */
+.certificate-info {
+    margin-top: 1rem;
+}
+
+.certificate-info p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.certificate-info h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Modal Style */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.modal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Skills and Education */
+#skills {
+  padding: var(--sectionPadding);
+  background: var(--secondaryBackgroundColor);
+}
+
+#skills h1 {
+    text-align: center;
+    font-size: 2rem; /* Sesuaikan ukuran font jika perlu */
+    margin-bottom: 2rem; /* Sesuaikan jarak bawah jika perlu */
+  }
+
+.skills-grid {
+  display: grid;
+  /* grid-template-columns: 40% 60%; */
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+}
+
+.education {
+  display: flex;
+  gap: 1rem;
+}
+
+.education .line {
+  padding: 0 0.7rem;
+}
+
+.education .line div {
+  width: 2px;
+  height: 100%;
+  background: var(--borderColor);
+  position: relative;
+}
+
+.education-info p {
+  margin: 0.6rem 0 1.4rem;
+}
+
+.education-years {
+  margin-bottom: 3rem;
+}
+
+/* The dot on the line */
+.education .line div:before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    background: #ff8ab1; /* Pink pastel */
+    border-radius: 50%;
+    position: absolute;
+    left: -6px;
+  }
+
+/* Right side of Skills */
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 1.5rem;
+}
+
+.skills-right ul {
+  line-height: 2rem;
+  padding: 0 1rem;
+}
+
+/* Contact Section */
+#contact {
+    padding: var(--sectionPadding);
+    background-color: #fff0f6; /* Pink pastel background */
+    border-radius: 10px; /* Optional: Rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+  }
+
+  #contact h1 {
+    text-align: center;
+    font-size: 2rem; /* Sesuaikan ukuran font jika perlu */
+    margin-bottom: 2rem; /* Sesuaikan jarak bawah jika perlu */
+  }
+  
+  .contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+  }
+  
+  .contact-form div {
+    margin-bottom: 1.4rem;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 0.75rem 1.3rem;
+    font-family: "Roboto", sans-serif;
+    background: #ffe6f0; /* Light pink background for inputs */
+    border: 1px solid #ffaec9; /* Slightly darker pink border */
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #9d9fa1;
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border: 1px solid #ff8ab1; /* Focus border color */
+  }
+  
+  .btn-submit {
+    width: 100%;
+    padding: 0.75rem 1.3rem;
+    background-color: #ff6fae; /* Bright pink button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .btn-submit:hover {
+    background-color: #ff5598; /* Darker pink on hover */
+  }
+  
+  /* Contact Section - Right Side */
+  .contact-item {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .contact-item-icon {
+    background: #ffccdf; /* Light pink background for icons */
+    width: 53px;
+    height: 53px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-item-icon svg {
+    fill: #ff6fae; /* Icon color */
+  }
+  
+  .contact-item-detail h4 {
+    margin-bottom: 0.6rem;
+  }
+
+/* Footer Section */
+footer {
+    padding: 4rem 0;
+    background: #ffb3d9; /* Pink pastel background */
+    text-align: center;
+    border-top: 2px solid #ff8ab1; /* Optional: Border at the top for separation */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+  }
+  
+  .footer-icons {
+    margin-bottom: 1.5rem; /* Increase spacing for better layout */
+  }
+  
+  .footer-icons a {
+    margin: 0 0.8rem; /* Increase spacing between icons */
+    display: inline-block; /* Ensure proper alignment */
+    transition: transform 0.3s ease-in-out; /* Add smooth hover effect */
+  }
+  
+  .footer-icons svg {
+    fill: #7d7d7d; /* Default icon color */
+    width: 30px; /* Increase icon size */
+    height: 30px; /* Maintain aspect ratio */
+  }
+  
+  .footer-icons a:hover svg {
+    fill: #ff5598; /* Change icon color on hover */
+    transform: scale(1.2); /* Slightly enlarge on hover */
+  }
+  
+  footer p {
+    font-size: 0.95rem;
+    color: #3e3f40;
+    margin-top: 1.5rem;
+  }
